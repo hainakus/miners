@@ -1,5 +1,3 @@
 #!/bin/bash
-sudo add-apt-repository ppa:graphics-drivers/ppa
-sudo apt update
-sudo ubuntu-drivers autoinstall
+sudo apt install nvidia-driver-510 nvidia-dkms-510
 
