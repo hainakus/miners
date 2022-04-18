@@ -1,7 +1,7 @@
 #!/usr/bin/expect -f
 
 #define password
-pass="root"
+set pass="root"
 
 sudo add-apt-repository ppa:graphics-drivers/ppa
 # detect password prompt
