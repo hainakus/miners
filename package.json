@@ -1,0 +1,11 @@
+{
+  "name": "miners",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "npx tsc main.ts",
+    "serve:app":"node main.js"
+  },
+  "devDependencies": {
+    "typescript": "^4.6.3"
+  }
+}
