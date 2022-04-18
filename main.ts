@@ -33,6 +33,15 @@ export class MinerInstall {
     filterEnumKeys(os: any) {
         return Object.keys(osSystems).filter((key:any) => isNaN(key) && key === os)
     }
+    installNvidia() {
+        const exec = child_process.exec
+        const cmd = 'cd sh_commands && chmod +x miner_install.sh && ./miner_install.sh';
+
+        exec(cmd, function(error, stdout, stderr) {
+            // command output is in stdout
+            console.log(stdout)
+        });
+    }
     InstallMiner() {
         const exec = child_process.exec
         const cmd = 'cd sh_commands && chmod +x miner_install.sh && ./miner_install.sh';

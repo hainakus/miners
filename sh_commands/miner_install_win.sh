@@ -1,4 +1,4 @@
-#! /usr/bin/bash
+
 
 DIR="LolMiner/1.48/"
 if [ -d "$DIR" ]; then
