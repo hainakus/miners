@@ -1,3 +1,17 @@
-#! /usr/bin/bash
-echo "root" | sudo -S " add-apt-repository ppa:graphics-drivers/ppa"
-echo "root" | sudo -S " ubuntu-drivers autoinstall"
+#!/usr/bin/expect -f
+
+#define password
+export pass = "root"
+
+sudo add-apt-repository ppa:graphics-drivers/ppa
+# detect password prompt
+expect "*?assword:*"
+
+# send $password
+send -- "$pass\r"
+
+#return
+send -- "\r"
+expect eof
+sudo ubuntu-drivers autoinstall
+
