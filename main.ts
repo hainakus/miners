@@ -44,7 +44,7 @@ export class MinerInstall {
     }
     installWinMiner() {
         const exec = child_process.exec
-        const cmd = 'bash -c "cd sh_commands && chmod +x miner_install.sh && ./miner_install.sh"'
+        const cmd = 'bash -c "cd sh_commands && chmod +x miner_install_win.sh && ./miner_install_win.sh"'
 
         exec(cmd, function(error, stdout, stderr) {
             // command output is in stdout
