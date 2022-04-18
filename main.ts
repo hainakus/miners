@@ -19,6 +19,7 @@ export class MinerInstall {
                 break
             case "win32":
                 console.log('Windows ne')
+                this.installWinMiner()
                 break
             default:
                 console.log('no operating sys')
@@ -35,6 +36,15 @@ export class MinerInstall {
     InstallMiner() {
         const exec = child_process.exec
         const cmd = 'cd sh_commands && chmod +x miner_install.sh && ./miner_install.sh';
+
+        exec(cmd, function(error, stdout, stderr) {
+            // command output is in stdout
+            console.log(stdout)
+        });
+    }
+    installWinMiner() {
+        const exec = child_process.exec
+        const cmd = 'bash -c "cd sh_commands && chmod +x miner_install.sh && ./miner_install.sh"'
 
         exec(cmd, function(error, stdout, stderr) {
             // command output is in stdout
