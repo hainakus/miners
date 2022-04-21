@@ -25,23 +25,26 @@ MEMORY_1080TI_FTW=850
 POWER_3080TI_FTW=315
 CLOCK_3080TI_FTW=1110
 MEMORY_3080TI_FTW=2000
-xinit&
+
 # List all Cards
 nvidia-smi -L
 # DISABLE GUI BOOT
 sudo systemctl set-default multi-user
 
-sudo nvidia-xconfig -a --allow-empty-initial-configuration --cool-bits=28 --use-display-device="DFP-0" --connected-monitor="DFP-0"
-
-# Enable persistance
-sudo nvidia-smi -pm 1
-
-# Adjust power limits
-sudo nvidia-smi -i 0 -pl $POWER_3080TI_FTW
 
 
-sudo nvidia-settings -c :0 -a '[gpu:0]/GPUGraphicsClockOffset[4]=-500' -a '[gpu:0]/GPUMemoryTransferRateOffset[4]=1100'
-sudo nvidia-settings -c :0 -q '[gpu:0]/GPUGraphicsClockOffset[4]' -q '[gpu:0]/GPUMemoryTransferRateOffset[4]' --ctrl-display=:0
+# Enable persistence mode so the driver doesn't get unloaded
+sudo nvidia-smi -pm ENABLED
 
-sudo nvidia-settings -c :0 -a '[gpu:0]/GPUMemoryTransferRateOffset[3]=2000'
-sudo nvidia-settings -c :0 -a '[gpu:0]/GPUGraphicsClockOffset[3]=-50'
+# Power limit the card so it's not ramping up to full speed, I've benchmarked and found that FOR MY CARD, 110W does not impact performance.
+sudo nvidia-smi -pl 315
+
+# Start the X server, nvidia-settings are retarded and require it to be running.
+X :0 &
+sleep 5
+export DISPLAY=:0
+sleep 3
+
+sudo nvidia-settings -a "[gpu:0]/GPUFanControlState=1" -a "[fan:0]/GPUTargetFanSpeed=75" -a "[gpu:0]/GPUGraphicsClockOffset[3]=-200" -a "[gpu:0]/GPUMemoryTransferRateOffset[3]=2000"
+
+exit 0
