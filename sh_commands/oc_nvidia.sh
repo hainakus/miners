@@ -40,15 +40,8 @@ nvidia-smi -pm 1
 nvidia-smi -i 0 -pl $POWER_3080TI_FTW
 
 
-# Adjust fan speeds
-nvidia-settings -a "[gpu:0]/GPUFanControlState=1" -a "[fan:0]/GPUTargetFanSpeed=$FANSPEED_3080TI" --ctrl-display=:0
-#nvidia-settings -a "[gpu:1]/GPUFanControlState=1" -a "[fan:1]/GPUTargetFanSpeed=$FANSPEED_1070TI" --ctrl-display=:0
+nvidia-settings -c :0 -a '[gpu:0]/GPUGraphicsClockOffset[4]=-500' -a '[gpu:0]/GPUMemoryTransferRateOffset[4]=1100'
+nvidia-settings -c :0 -q '[gpu:0]/GPUGraphicsClockOffset[4]' -q '[gpu:0]/GPUMemoryTransferRateOffset[4]' --ctrl-display=:0
 
-############## 1070 TI Memory & Clock Settings
-
-#GPU 0
-nvidia-settings -c :0 -a "[gpu:0]/GPUGraphicsClockOffset[3]=$CLOCK_3080TI" --ctrl-display=:0
-nvidia-settings -c :0 -a "[gpu:0]/GPUMemoryTransferRateOffset[3]=$MEMORY_3080TI" --ctrl-display=:0
-#GPU 1
-#nvidia-settings -c :0 -a "[gpu:1]/GPUGraphicsClockOffset[3]=$CLOCK_3080TI"
-#nvidia-settings -c :0 -a "[gpu:1]/GPUMemoryTransferRateOffset[3]=$MEMORY_3080TI"
+nvidia-settings -c :0 -a '[gpu:0]/GPUMemoryTransferRateOffset[3]=2000'
+nvidia-settings -c :0 -a '[gpu:0]/GPUGraphicsClockOffset[3]=-50'
