@@ -31,17 +31,17 @@ nvidia-smi -L
 # DISABLE GUI BOOT
 sudo systemctl set-default multi-user
 
-nvidia-xconfig -a --allow-empty-initial-configuration --cool-bits=28 --use-display-device="DFP-0" --connected-monitor="DFP-0"
+sudo nvidia-xconfig -a --allow-empty-initial-configuration --cool-bits=28 --use-display-device="DFP-0" --connected-monitor="DFP-0"
 
 # Enable persistance
-nvidia-smi -pm 1
+sudo nvidia-smi -pm 1
 
 # Adjust power limits
-nvidia-smi -i 0 -pl $POWER_3080TI_FTW
+sudo nvidia-smi -i 0 -pl $POWER_3080TI_FTW
 
 
-nvidia-settings -c :0 -a '[gpu:0]/GPUGraphicsClockOffset[4]=-500' -a '[gpu:0]/GPUMemoryTransferRateOffset[4]=1100'
-nvidia-settings -c :0 -q '[gpu:0]/GPUGraphicsClockOffset[4]' -q '[gpu:0]/GPUMemoryTransferRateOffset[4]' --ctrl-display=:0
+sudo nvidia-settings -c :0 -a '[gpu:0]/GPUGraphicsClockOffset[4]=-500' -a '[gpu:0]/GPUMemoryTransferRateOffset[4]=1100'
+sudo nvidia-settings -c :0 -q '[gpu:0]/GPUGraphicsClockOffset[4]' -q '[gpu:0]/GPUMemoryTransferRateOffset[4]' --ctrl-display=:0
 
-nvidia-settings -c :0 -a '[gpu:0]/GPUMemoryTransferRateOffset[3]=2000'
-nvidia-settings -c :0 -a '[gpu:0]/GPUGraphicsClockOffset[3]=-50'
+sudo nvidia-settings -c :0 -a '[gpu:0]/GPUMemoryTransferRateOffset[3]=2000'
+sudo nvidia-settings -c :0 -a '[gpu:0]/GPUGraphicsClockOffset[3]=-50'
